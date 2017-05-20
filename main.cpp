@@ -1,6 +1,6 @@
 
 #include <iostream>
-
+#include "csv.h"
 class creep{
 public:
     std::string name;
@@ -65,6 +65,33 @@ std::string bmg(creep one, creep two);
 std::string bme(creep one, creep two);
 
 int main(int argc, const char * argv[]) {
+    
+    
+    //practicing some Dota Code;
+    io::CSVReader<3> in("/Users/Philip/Desktop/Xcode/Midas/Midas/dotaStats.csv");       // change the number in <> to the number of atributes you are reading
+    in.read_header(io::ignore_extra_column, "A","STR", "STR+");     // "attribute" should match the first line in the csv file
+    std::string A; double STR;double STRp; // need a veriable for each attribute
+    double Maxstr = 0;
+    int level;
+    std::string Strongest;
+    while(in.read_row(A, STR, STRp)){ //in.readrow is collecting the next line and saveing the values to the varibles.
+        //std::cout << A<< std::endl;
+        if(STR > Maxstr) {              // keep a running total strongest hero. 
+            Maxstr = STR;
+            Strongest = A;
+        }
+        // do stuff with the data
+    }
+    std::cout << Strongest << " is the strongest hero with " << Maxstr << " starting strength" << std::endl;
+
+    
+    
+    
+    
+    
+    
+    
+    
     creep golem;
     golem.name = "golem";
     golem.xp = 42;
@@ -88,7 +115,7 @@ int main(int argc, const char * argv[]) {
     
     //std::cout << "if you want gold us midas on:" << bmg(golem, centaur) << std::endl;
     //std::cout << "if you want xp us midas on:" << bme(golem, centaur) << std::endl;
-    std::cout << "Time to kill golem camp is: "  << jug.tKillCamp(golem) << std::endl;
+    //std::cout << "Time to kill golem camp is: "  << jug.tKillCamp(golem) << std::endl;
 
     
     
